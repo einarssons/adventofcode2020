@@ -83,6 +83,27 @@ class TestDec4(unittest.TestCase):
         self.assertEqual(m.check_number_interval("1919", 1920, 2002), False, "Non-Valid number")
         self.assertEqual(m.check_number_interval("arne", 1920, 2002), False, "Non-number")
 
+    def test_check_height(self):
+        self.assertEqual(m.check_height("60in"), True, "Valid 60in")
+        self.assertEqual(m.check_height("190cm"), True, "Valid 190cm")
+        self.assertEqual(m.check_height("190in"), False, "Bad 190in")
+        self.assertEqual(m.check_height("190"), False, "Bad 190")
+
+    def test_check_ecl(self):
+        self.assertEqual(m.check_ecl("brn"), True, "Good brn")
+        self.assertEqual(m.check_ecl("wat"), False, "Bad wat")
+
+    def test_check_hcl(self):
+        self.assertEqual(m.check_hcl("#123abc"), True, "Good 1")
+        self.assertEqual(m.check_hcl("#123abz"), False, "Bad z")
+        self.assertEqual(m.check_hcl("123abz"), False, "Bad no #")
+
+    def test_check_pid(self):
+        self.assertEqual(m.check_pid("000000001"), True, "9 digits")
+        self.assertEqual(m.check_pid("0123456789"), False, "10 digits")
+        self.assertEqual(m.check_pid("012a456789"), False, "Non-digits")
+
+
 
 
 if __name__ == '__main__':
