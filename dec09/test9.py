@@ -39,5 +39,6 @@ class Test8(unittest.TestCase):
         self.assertEqual(holy_range, [15, 25, 47, 40])
         self.assertEqual(max(holy_range) + min(holy_range), 62)
 
+
 if __name__ == '__main__':
     unittest.main()

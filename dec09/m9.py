@@ -1,4 +1,4 @@
-def find_first_bad_number(numbers:[int], window:int)->int:
+def find_first_bad_number(numbers: [int], window: int) -> int:
     for i in range(window, len(numbers)):
         target = numbers[i]
         found = False
@@ -15,7 +15,8 @@ def find_first_bad_number(numbers:[int], window:int)->int:
             return target
     return -1
 
-def find_holy_range(numbers:[int], target:int)->list:
+
+def find_holy_range(numbers: [int], target: int) -> list:
     for i in range(len(numbers)):
         sum = 0
         for j in range(i, len(numbers)):
@@ -26,6 +27,7 @@ def find_holy_range(numbers:[int], target:int)->list:
                 break
     return []
 
+
 def main():
     with open('numbers.txt') as ifh:
         numbers = [int(nr) for nr in ifh.read().splitlines()]
@@ -34,6 +36,7 @@ def main():
         holy_sum = max(holy_range) + min(holy_range)
         print(f'first bad, {first_bad}')
         print(f'Le holy sum, {holy_sum}')
+
 
 if __name__ == '__main__':
     main()
