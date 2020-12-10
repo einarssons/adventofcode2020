@@ -13,6 +13,7 @@ b\
 
 TestCase = namedtuple("TestCase", ["text", "output"])
 
+
 class TestDec6(unittest.TestCase):
 
     def test_get_groups(self):

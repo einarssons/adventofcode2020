@@ -1,25 +1,28 @@
 from dataclasses import dataclass
 import re
 
+
 @dataclass
 class Instr():
-    op:str
-    val:int
+    op: str
+    val: int
+
 
 @dataclass
 class Exit():
-    acc:int
-    reason:int  # one of loop, outside, success
+    acc: int
+    reason: int  # one of loop, outside, success
 
 
-def parse_instruction(line:str)->Instr:
+def parse_instruction(line: str) -> Instr:
     mobj = re.match(r"(?P<op>\w{3}) (?P<val>[-+]\d+)$", line)
     if mobj is None:
         raise ValueError(f"No match for {line}")
     md = mobj.groupdict()
     return Instr(md['op'], int(md['val']))
 
-def execute_instructions(instructions:[Instr])->Exit:
+
+def execute_instructions(instructions: [Instr]) -> Exit:
     "Execute instructions until loop will start and return accumulator value."
     acc = 0
     nr_steps = 0
@@ -45,13 +48,14 @@ def execute_instructions(instructions:[Instr])->Exit:
         else:
             raise ValueError("Instruction %s not known" % instr.op)
         nr_steps += 1
-        #if nr_steps % 100 == 0:
+        # if nr_steps % 100 == 0:
         #    print(f"{nr_steps} steps taken")
         if nr_steps > len(instructions):
             raise Exception("Executing too many instructions")
     return acc
 
-def change_op_until_success(instructions:[Instr])->int:
+
+def change_op_until_success(instructions: [Instr]) -> int:
     for idx in range(len(instructions)):
         if instructions[idx].op == "acc":
             continue

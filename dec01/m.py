@@ -23,6 +23,5 @@ def main(file_name):
         print(expense3(input, 2020))
 
 
-
 if __name__ == "__main__":
     main("data.txt")

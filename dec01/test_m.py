@@ -6,6 +6,7 @@ import m
 
 TestCase = namedtuple("TestCase", "name input want")
 
+
 class TestFuel(unittest.TestCase):
 
     def test2Elements(self):

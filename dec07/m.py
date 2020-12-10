@@ -7,7 +7,7 @@ Rule = namedtuple('Rule', ['bag', 'subs'])
 Sub = namedtuple('Sub', ['nr', 'bag'])
 
 
-def parse_rule(rule_line:str) -> Rule:
+def parse_rule(rule_line: str) -> Rule:
     mobj = re.match(r"(\w+ \w+) bags contain", rule_line)
     if mobj is None:
         raise ValueError("No initial color")
@@ -18,7 +18,8 @@ def parse_rule(rule_line:str) -> Rule:
         subs.append(Sub(int(mobj.group(1)), mobj.group(2)))
     return Rule(bag, subs)
 
-def find_containers(bag:str, rules:[])->[]:
+
+def find_containers(bag: str, rules: []) -> []:
     outers = set()
     cores = [bag]
     while True:
@@ -36,12 +37,14 @@ def find_containers(bag:str, rules:[])->[]:
             outers.add(core)
     return outers
 
-def count_subs(bag:str, rules:dict)->int:
+
+def count_subs(bag: str, rules: dict) -> int:
     count = 1
     subs = rules[bag]
     for sub in subs:
         count += count_subs(sub.bag, rules) * sub.nr
     return count
+
 
 def main():
     with open('rules.txt') as ifh:
@@ -53,7 +56,6 @@ def main():
         count -= 1  # Don't count top bag
         print(len(containers))
         print(count)
-
 
 
 if __name__ == "__main__":

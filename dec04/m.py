@@ -1,6 +1,7 @@
 import re
 
-def read_passports(full_text:str)->[]:
+
+def read_passports(full_text: str) -> []:
     lines = full_text.splitlines()
     pports = []
     pport = ''
@@ -13,7 +14,8 @@ def read_passports(full_text:str)->[]:
     pports.append(pport.strip())
     return pports
 
-def pport_keys(pport:str)->[]:
+
+def pport_keys(pport: str) -> []:
     pairs = pport.split()
     keys = []
     for pair in pairs:
@@ -21,12 +23,14 @@ def pport_keys(pport:str)->[]:
         keys.append(key)
     return keys
 
-def validate_pport_keys(keys:[])-> bool:
+
+def validate_pport_keys(keys: []) -> bool:
     wanted_keys = set(["ecl", "pid", "eyr", "hcl", "byr", "iyr",  "hgt"])
     in_keys = set(keys)
     return in_keys.intersection(wanted_keys) == wanted_keys
 
-def pport_data(pport:str)->{}:
+
+def pport_data(pport: str) -> {}:
     pairs = pport.split()
     data = {}
     for pair in pairs:
@@ -34,7 +38,8 @@ def pport_data(pport:str)->{}:
         data[key] = value
     return data
 
-def validate_pport(data: dict)-> bool:
+
+def validate_pport(data: dict) -> bool:
     if not validate_pport_keys(data.keys()):
         return False
 
@@ -54,7 +59,8 @@ def validate_pport(data: dict)-> bool:
         return False
     return True
 
-def check_number_interval(val:str, low:int, high:int)-> bool:
+
+def check_number_interval(val: str, low: int, high: int) -> bool:
     "Check string number vs [low, high] interval"
     # Need conversion and exception handling
     try:
@@ -63,8 +69,9 @@ def check_number_interval(val:str, low:int, high:int)-> bool:
         return False
     return low <= number <= high
 
-def check_height(height:str)-> bool:
-    #Check last two characters
+
+def check_height(height: str) -> bool:
+    # Check last two characters
     unit = height[-2:]
     length = height[:-2]
     if unit == 'in':
@@ -75,15 +82,16 @@ def check_height(height:str)-> bool:
         return False
 
 
-
-def check_ecl(ecl:str)-> bool:
+def check_ecl(ecl: str) -> bool:
     valid_colors = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
     return ecl in valid_colors
 
-def check_hcl(hcl:str)-> bool:
+
+def check_hcl(hcl: str) -> bool:
     return re.match(r'^#[0-9a-f]{6}$', hcl) is not None
 
-def check_pid(pid:str)-> bool:
+
+def check_pid(pid: str) -> bool:
     return re.match(r'^\d{9}$', pid) is not None
 
 

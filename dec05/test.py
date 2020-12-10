@@ -5,6 +5,7 @@ import m
 
 TestCase = namedtuple("Case", ["code", "row", "column", "seat"])
 
+
 class TestDec5(unittest.TestCase):
 
     def test_codes(self):

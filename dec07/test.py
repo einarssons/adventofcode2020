@@ -22,7 +22,7 @@ parsed_rules = [
     m.Rule('muted yellow', [(2, 'shiny gold'), (9,  'faded blue')]),
     m.Rule('shiny gold', [(1, 'dark olive'), (2, 'vibrant plum')]),
     m.Rule('dark olive', [(3, 'faded blue'), (4, 'dotted black')]),
-    m.Rule('vibrant plum' ,[(5, 'faded blue'), (6, 'dotted black')]),
+    m.Rule('vibrant plum', [(5, 'faded blue'), (6, 'dotted black')]),
     m.Rule('faded blue', []),
     m.Rule('dotted black', [])
 ]
@@ -39,6 +39,7 @@ dark violet bags contain no other bags.\
 
 
 TestCase = namedtuple("TestCase", ["text", "output"])
+
 
 class TestDec7(unittest.TestCase):
 
@@ -58,7 +59,6 @@ class TestDec7(unittest.TestCase):
         count = m.count_subs('shiny gold', rulesdict)
         count -= 1  # Don't count top bag
         self.assertEqual(count, 126)
-
 
 
 if __name__ == '__main__':

@@ -1,6 +1,5 @@
 
-
-def ride_toboggan(forest:str, nr_right:int, nr_down:int)->int:
+def ride_toboggan(forest: str, nr_right: int, nr_down: int) -> int:
     tree_rows = forest.splitlines()
     width = len(tree_rows[0])
     tree_crashes = 0
@@ -10,6 +9,7 @@ def ride_toboggan(forest:str, nr_right:int, nr_down:int)->int:
             tree_crashes += 1
     return tree_crashes
 
+
 tours = (
     (1, 1),
     (3, 1),
@@ -18,6 +18,7 @@ tours = (
     (1, 2)
 )
 
+
 def main(file_name="forest.txt"):
     with open(file_name) as ifh:
         forest = ifh.read()
@@ -25,6 +26,7 @@ def main(file_name="forest.txt"):
     for tour in tours:
         n *= ride_toboggan(forest, tour[0], tour[1])
     print(n)
+
 
 if __name__ == '__main__':
     main('forest.txt')

@@ -53,8 +53,9 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719\
 """
 
 
+pport = ("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd " +
+         "byr:1937 iyr:2017 cid:147 hgt:183cm")
 
-pport = "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm"
 
 class TestDec4(unittest.TestCase):
 
@@ -64,12 +65,19 @@ class TestDec4(unittest.TestCase):
 
     def test_passport_keys(self):
         keys = m.pport_keys(pport)
-        self.assertEqual(keys, ["ecl", "pid", "eyr", "hcl", "byr", "iyr", "cid", "hgt"], "Keys")
+        self.assertEqual(keys, ["ecl", "pid", "eyr", "hcl", "byr",
+                         "iyr", "cid", "hgt"], "Keys")
 
     def test_key_validation(self):
-        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl", "byr", "iyr", "cid", "hgt"]), True, "8 keys")
-        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl", "byr", "iyr",  "hgt"]), True, "7 keys no cid")
-        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl", "byr", "iyr", "cid"]), False, "7 keys with cid")
+        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl",
+                                                "byr", "iyr", "cid", "hgt"]),
+                         True, "8 keys")
+        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl",
+                                                "byr", "iyr",  "hgt"]),
+                         True, "7 keys no cid")
+        self.assertEqual(m.validate_pport_keys(["ecl", "pid", "eyr", "hcl",
+                                                "byr", "iyr", "cid"]),
+                         False, "7 keys with cid")
 
     def test_full_validation(self):
         pports = m.read_passports(adv_examples)
@@ -79,9 +87,12 @@ class TestDec4(unittest.TestCase):
             self.assertEqual(m.validate_pport(data), result, data)
 
     def test_check_number_interval(self):
-        self.assertEqual(m.check_number_interval("1922", 1920, 2002), True, "Valid number")
-        self.assertEqual(m.check_number_interval("1919", 1920, 2002), False, "Non-Valid number")
-        self.assertEqual(m.check_number_interval("arne", 1920, 2002), False, "Non-number")
+        self.assertEqual(m.check_number_interval("1922", 1920, 2002),
+                         True, "Valid number")
+        self.assertEqual(m.check_number_interval("1919", 1920, 2002),
+                         False, "Non-Valid number")
+        self.assertEqual(m.check_number_interval("arne", 1920, 2002),
+                         False, "Non-number")
 
     def test_check_height(self):
         self.assertEqual(m.check_height("60in"), True, "Valid 60in")
@@ -102,8 +113,6 @@ class TestDec4(unittest.TestCase):
         self.assertEqual(m.check_pid("000000001"), True, "9 digits")
         self.assertEqual(m.check_pid("0123456789"), False, "10 digits")
         self.assertEqual(m.check_pid("012a456789"), False, "Non-digits")
-
-
 
 
 if __name__ == '__main__':

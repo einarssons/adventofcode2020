@@ -1,4 +1,4 @@
-def read_groups(full_text:str)->[]:
+def read_groups(full_text: str) -> []:
     "Separate groups from newlines and join answers."
     lines = full_text.splitlines()
     groups = []
@@ -13,19 +13,22 @@ def read_groups(full_text:str)->[]:
     groups.append(group)
     return groups
 
-def union_answers(group:list)->int:
+
+def union_answers(group: list) -> int:
     answers = set()
     for person in group:
         person_answers = set(person)
         answers.update(person_answers)
     return len(answers)
 
-def intersection_answers(group:list)->int:
+
+def intersection_answers(group: list) -> int:
     answers = set(group[0])
     for person in group[1:]:
         person_answers = set(person)
         answers.intersection_update(person_answers)
     return len(answers)
+
 
 def main():
     with open('answers.txt') as ifh:

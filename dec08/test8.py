@@ -26,6 +26,7 @@ dec_instr = [
         m8.Instr('acc', 6)
 ]
 
+
 class Test8(unittest.TestCase):
 
     def test_parse_instructions(self):

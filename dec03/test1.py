@@ -34,9 +34,10 @@ class TestDec3(unittest.TestCase):
             TestCase("small 1 2", Input(example_forest, 1, 2), 2),
         ]
         for c in cases:
-            result = m.ride_toboggan(c.input.forest,
-                c.input.nr_right, c.input.nr_down)
+            result = m.ride_toboggan(c.input.forest, c.input.nr_right,
+                                     c.input.nr_down)
             self.assertEqual(result, c.want, c.name)
+
 
 if __name__ == '__main__':
     unittest.main()
