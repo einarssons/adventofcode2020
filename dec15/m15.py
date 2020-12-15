@@ -1,3 +1,6 @@
+import time
+
+
 class MagicList():
 
     def __init__(self, start_list: [int]):
@@ -5,9 +8,7 @@ class MagicList():
         self.prev_nr = {}
         self.last_nr = start_list[0]
         for nr in start_list[1:]:
-            self.prev_nr[self.last_nr] = self.pos
-            self.last_nr = nr
-            self.pos += 1
+            self.add_nr(nr)
 
     def add_nr(self, nr: int):
         self.prev_nr[self.last_nr] = self.pos
@@ -34,9 +35,11 @@ def main():
     nr = magic_list.run_until_turn(2020)
     print(f"Answer A 2020: {nr}")
 
+    start = time.time()
     magic_list = MagicList(start_list)
-    nr = magic_list.run_until_turn(30000000)
+    nr = magic_list.run_until_turn(30_000_000)
     print(f"Answer B 30000000: {nr}")
+    print(f"It took {time.time()-start:.0f}s")
 
 
 if __name__ == "__main__":

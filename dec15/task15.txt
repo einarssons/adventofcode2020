@@ -52,3 +52,5 @@ Given your starting numbers, what will be the 30000000th number spoken?
 Your puzzle answer was 1505722.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
+
+Your puzzle input was 0,8,15,2,12,1,4.
