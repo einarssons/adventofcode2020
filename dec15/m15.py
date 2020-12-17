@@ -40,6 +40,7 @@ def main():
     nr = magic_list.run_until_turn(30_000_000)
     print(f"Answer B 30000000: {nr}")
     print(f"It took {time.time()-start:.0f}s")
+    print(f"Nr distinct numbers was {len(magic_list.prev_nr)}")
 
 
 if __name__ == "__main__":
