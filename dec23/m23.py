@@ -45,7 +45,7 @@ class Game:
 
 class GameB:
     def __init__(self, cup_list: [int]):
-        self.next = {}
+        self.next = [0]*(len(cup_list)+1)
         for i in range(len(cup_list) - 1):
             self.next[cup_list[i]] = cup_list[i + 1]
         self.next[cup_list[len(cup_list)-1]] = cup_list[0]
